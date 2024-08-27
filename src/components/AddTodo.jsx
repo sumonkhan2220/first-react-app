@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 
-const AddTodo = () => {
+const AddTodo = ({ onNewItem }) => {
+  const [todoName, setTodoName] = useState("");
+  const [dueDate, setDueDate] = useState("");
+
+  const handleNameChange = (event) => {
+    setTodoName(event.target.value);
+  };
+
+  const handleDateChange = (event) => {
+    setDueDate(event.target.value);
+  };
+
+  const handleClick = () => {
+    onNewItem(todoName, dueDate);
+    setTodoName("");
+    setDueDate("");
+  };
+
   return (
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-6">
-          <input type="text" placeholder="Enter Todo Here" />
+    <div className="container">
+      <div className="row kg-row">
+        <div className="col-6">
+          <input
+            type="text"
+            placeholder="Enter Todo Here"
+            value={todoName}
+            onChange={handleNameChange}
+          />
         </div>
-        <div class="col-4">
-          <input type="date" />
+        <div className="col-4">
+          <input type="date" value={dueDate} onChange={handleDateChange} />
         </div>
-        <div class="col-2">
-          <button type="button" class="btn btn-success">
+        <div className="col-2">
+          <button
+            type="button"
+            className="btn btn-success kg-button"
+            onClick={handleClick}
+          >
             Add
           </button>
         </div>

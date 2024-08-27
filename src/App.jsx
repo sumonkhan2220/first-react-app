@@ -1,39 +1,39 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from "react";
 import AppName from "./components/AppName";
 import AddTodo from "./components/AddTodo";
+import TodoItem1 from "./components/TodoItem1";
+import "./App.css";
+import TodoItem from "./components/TodoItem";
 const App = () => {
+  const initialTodoItems = [
+    {
+      name: "Buy Milk",
+      dueDate: "4/10/2023",
+    },
+    {
+      name: " Go To College",
+      dueDate: "4/10/2023",
+    },
+
+    {
+      name: " Like this video",
+      dueDate: "right now",
+    },
+  ];
+
+  const [todoItem, setTodoItem] = useState(initialTodoItems);
+
+  const handleNewItem = (itemName, itemDueDate) => {
+    const newTodoItem = [...todoItem, { name: itemName, dueDate: itemDueDate }];
+    setTodoItem(newTodoItem);
+  };
+
   return (
-    <div>
-      <center className="todo-container">
-        <AppName />
-        <AddTodo />
-
-        <div class="container text-center">
-          <div class="row">
-            <div class="col-6">Buy Milk</div>
-            <div class="col-4">4/10/2023</div>
-            <div class="col-2">
-              <button type="button" class="btn btn-danger">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="container text-center">
-          <div class="row">
-            <div class="col-6">Go To College</div>
-            <div class="col-4">4/10/2023</div>
-            <div class="col-2">
-              <button type="button" class="btn btn-danger">
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </center>
-    </div>
+    <center className="todo-container">
+      <AppName />
+      <AddTodo onNewItem={handleNewItem} />
+      <TodoItem todoItem={todoItem} />
+    </center>
   );
 };
 
