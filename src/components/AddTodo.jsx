@@ -12,7 +12,8 @@ const AddTodo = ({ onNewItem }) => {
     setDueDate(event.target.value);
   };
 
-  const handleClick = () => {
+  const handleClick = (event) => {
+    event.preventDefault();
     onNewItem(todoName, dueDate);
     setTodoName("");
     setDueDate("");
@@ -20,7 +21,7 @@ const AddTodo = ({ onNewItem }) => {
 
   return (
     <div className="container">
-      <div className="row kg-row">
+      <form className="row kg-row" onSubmit={handleClick}>
         <div className="col-6">
           <input
             type="text"
@@ -33,15 +34,11 @@ const AddTodo = ({ onNewItem }) => {
           <input type="date" value={dueDate} onChange={handleDateChange} />
         </div>
         <div className="col-2">
-          <button
-            type="button"
-            className="btn btn-success kg-button"
-            onClick={handleClick}
-          >
+          <button className="btn btn-success kg-button" type="submit">
             Add
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
