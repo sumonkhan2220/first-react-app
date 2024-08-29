@@ -1,18 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
 const AddTodo = ({ onNewItem }) => {
-  // const [todoName, setTodoName] = useState("");
-  // const [dueDate, setDueDate] = useState("");
   const todoNameElement = useRef();
   const dueDateElement = useRef();
-
-  // const handleNameChange = (event) => {
-  //   setTodoName(event.target.value);
-  // };
-
-  // const handleDateChange = (event) => {
-  //   setDueDate(event.target.value);
-  // };
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -21,8 +11,6 @@ const AddTodo = ({ onNewItem }) => {
     todoNameElement.current.value = "";
     dueDateElement.current.value = "";
     onNewItem(todoName, dueDate);
-    // setTodoName("");
-    // setDueDate("");
   };
 
   return (
